@@ -9,10 +9,6 @@ pipeline {
                 git 'https://github.com/vinaypro5/hello-world-java.git'
             }
         }
-        stage ('build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
+    
     }
 }
