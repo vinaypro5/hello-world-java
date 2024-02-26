@@ -11,12 +11,12 @@ pipeline {
     }
     stage('build-maven') {
       steps {
-        sh 'mvn clean package' // Using 'sh' instead of 'bat'
+        bat 'mvn clean package' // Using 'sh' instead of 'bat'
       }
     }
     stage('SonarQube') {
       steps {
-        sh 'mvn clean verify sonar:sonar \
+        bat 'mvn clean verify sonar:sonar \
           -Dsonar.projectKey=Java-Todo \
           -Dsonar.projectName=Java-Todo \
           -Dsonar.host.url=http://localhost:9000 \
