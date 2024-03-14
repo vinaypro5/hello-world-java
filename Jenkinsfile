@@ -9,5 +9,8 @@ pipeline {
                 git 'https://github.com/vinaypro5/hello-world-java.git'
             }
         }
+        stage('maven-Build'){
+            sh 'clean maven build'
+        }
     }
 }
