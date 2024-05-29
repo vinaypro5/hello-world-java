@@ -3,6 +3,9 @@ pipeline {
     tools {
         maven "m3"
     }
+    environment {
+        DOCKER_IMAGE = 'vinaypro5/hello-world-java'
+    }
     stages {
         stage('Git check out') {
             steps {
