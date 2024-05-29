@@ -28,7 +28,7 @@ pipeline {
          stage('docker-login') {
             steps {
                 withCredentials([string(credentialsId: DOCKER_CREDENTIALS_ID, variable: 'DOCKER_TOKEN')]) {
-                    sh "echo $DOCKER_TOKEN | docker login -u vinaypro5 --password-stdin"
+                    sh "echo $DOCKER_TOKEN | docker login -u vinayit --password-stdin"
                 }
             }
         }
