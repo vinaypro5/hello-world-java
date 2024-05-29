@@ -4,7 +4,7 @@ pipeline {
         maven 'm3'
     }
     environment {
-        DOCKER_IMAGE = 'vinaypro5/hello-world-java' // Replace with your actual Docker image name
+        DOCKER_IMAGE = 'vinayit/hello-world-java' // Replace with your actual Docker image name
         DOCKER_CREDENTIALS_ID = 'Docker'
     }
     stages {
