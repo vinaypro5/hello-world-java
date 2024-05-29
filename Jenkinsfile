@@ -5,6 +5,7 @@ pipeline {
     }
     environment {
         DOCKER_IMAGE = 'vinaypro5/hello-world-java' // Replace with your actual Docker image name
+        DOCKER_CREDENTIALS_ID = 'Docker'
     }
     stages {
         stage('Git check out') {
@@ -22,6 +23,18 @@ pipeline {
         stage('Docker Build') {
             steps {               
                     sh "docker build -t $DOCKER_IMAGE ."               
+            }
+        }
+         stage('docker-login') {
+            steps {
+                withCredentials([string(credentialsId: DOCKER_CREDENTIALS_ID, variable: 'DOCKER_TOKEN')]) {
+                    sh "echo $DOCKER_TOKEN | docker login -u vinaypro5 --password-stdin"
+                }
+            }
+        }
+        stage('docker-push') {
+            steps {
+                sh "docker push $DOCKER_IMAGE"
             }
         }
     }
