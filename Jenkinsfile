@@ -1,10 +1,10 @@
 pipeline {
     agent any
     tools {
-        maven "m3"
+        maven 'm3'
     }
     environment {
-        DOCKER_IMAGE = 'vinaypro5/hello-world-java'
+        DOCKER_IMAGE = 'vinaypro5/hello-world-java' // Replace with your actual Docker image name
     }
     stages {
         stage('Git check out') {
@@ -12,19 +12,30 @@ pipeline {
                 git 'https://github.com/vinaypro5/hello-world-java.git'
             }
         }
-        stage('maven-Build') {
+        stage('Maven Build') {
             steps {
                 script {
-              sh 'mvn clean install' 
-
+                    sh 'mvn clean install'
                 }
             }
         }
-        stage ('Docker-Build'){
-            steps{
+        stage('Docker Build') {
+            steps {
                 dir('hello-world-java') {
                     sh "docker build -t $DOCKER_IMAGE ."
+                }
             }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
