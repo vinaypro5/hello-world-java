@@ -17,5 +17,11 @@ pipeline {
                 }
             }
         }
+        stage ('Docker-Build'){
+            steps{
+                dir('hello-world-java') {
+                    sh "docker build -t $DOCKER_IMAGE ."
+            }
+        }
     }
 }
